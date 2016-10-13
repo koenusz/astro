@@ -1,0 +1,2 @@
+export const UPDATE_SHIP_NAME = 'UPDATE_SHIP_NAME';
+export const SHIP_ADD_NAME = 'SHIP_ADD_NAME';
