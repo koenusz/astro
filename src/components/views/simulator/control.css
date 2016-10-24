@@ -1,0 +1,30 @@
+.simcontrol {
+  position: relative;
+}
+
+.simcontrol div {
+  width: 31px;
+  height: 31px;
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+  margin-top: 10px;
+  color:  #2297D1;
+  border: 1px;
+  border-style: solid;
+}
+
+.start {
+  position: absolute;
+  right: 0px;
+}
+
+.speed {
+  position: absolute;
+  right: 50px;
+}
+
+.speedtext {
+  padding-top: 2px;
+  font-size: 24px;
+}

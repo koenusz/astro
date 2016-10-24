@@ -1,0 +1,70 @@
+
+/**
+ * Main Layout
+ */
+
+.app {
+  display: flex;
+  min-width: 800px;
+}
+
+.primary-aside {
+  position: absolute;
+  margin-top: 60px;
+  width: 12rem;
+}
+
+.navigation-menu {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 30px;
+}
+
+.navigation-list {
+  position: absolute;
+  width: 500px;
+  margin-left: 200px;
+
+}
+
+.navigation-menu li {
+  display: inline;
+  padding-right: 1em;
+  list-style: none;
+  color:  #2297D1;
+}
+
+.navigation-menu a.active {
+  color: #fff;
+  background-color: #2297D1;
+}
+
+.simcontrol{
+  position: absolute;
+  display: block;
+  right: 0px;
+  margin-right: 30px;
+}
+
+.primary-aside ul {
+  list-style: none;
+  margin: 0;
+}
+
+.primary-aside a {
+  display: block;
+  padding: 0.6em;
+}
+
+.primary-aside a.active {
+  color: #fff;
+  background-color: #2297D1;
+}
+
+main {
+  position: absolute;
+  margin-top: 60px;
+  flex: 1;
+  margin-left: 200px;
+}

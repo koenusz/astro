@@ -2,31 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {Provider} from 'react-redux';
-//import store from './store';
 import './index.css';
 import {Router, Route, browserHistory} from 'react-router';
+import middlewareStore from './store';
+import {shiprequest} from './actions/action_creator.js'
 
-import {createStore} from 'redux';
-import reducers from './reducers/reducers';
+import MainLayout from './components/layouts/main-layout';
+
 import ShipListContainer from './components/containers/shipListContainer';
 
-const store = createStore(reducers);
+const store = middlewareStore;
 
-var action = {
-    type: 'SHIP_ADD_NAME',
-    ships: [
-      { ship: {id: 1,
-            name: 'The Destroyer'}
-       }
-       ]
-};
+console.log(shiprequest());
 
-store.dispatch(action);
+store.dispatch(shiprequest());
+
 
 console.log('done: ' + store.shipState);
 
 
-const routes = <Route>
+const routes = <Route component={MainLayout}>
   <Route path="/" component={App}/>
   <Route path="/ship" component={ShipListContainer}/>
 </Route>;
