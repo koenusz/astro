@@ -1,0 +1,21 @@
+group 'astro.backend.server'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.commons:commons-collections4:4.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.7'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
+    compileOnly "org.projectlombok:lombok:1.16.10"
+    compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
+    compile group: 'com.corundumstudio.socketio', name: 'netty-socketio', version: '1.7.12'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
