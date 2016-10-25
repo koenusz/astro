@@ -16,4 +16,5 @@ npm-debug.log
 *.log
 npm-debug.log*
 node_modules/
-build/
+websocket/.idea/
+websocket/.gradle/
