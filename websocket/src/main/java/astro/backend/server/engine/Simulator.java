@@ -1,14 +1,14 @@
 package astro.backend.server.engine;
 
-import astro.backend.server.action.Action;
-import astro.backend.server.action.ActionListener;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Simulator implements Runnable, ActionListener {
+
+public class Simulator implements Runnable {
 
     private static final Logger logger = LogManager.getLogger();
 
@@ -19,7 +19,7 @@ public class Simulator implements Runnable, ActionListener {
 
     private Thread thread = new Thread(this);
 
-    private synchronized void start() {
+    public synchronized void start() {
         running = true;
         thread.start();
     }
@@ -67,14 +67,16 @@ public class Simulator implements Runnable, ActionListener {
         }
     }
 
-    @Override
-    public void listen(Action action) {
-        if (action.getType().equals("SIM_START")){
-            logger.info("starting");
-            start();
-        }
-        if (action.getType().equals("SIM_STOP")){
-            stop();
-        }
-    }
+//    @Override
+//    public void listen(Action action) {
+//        if (action.getType().equals("SIM_START")){
+//            logger.info("starting");
+//            start();
+//        }
+//        if (action.getType().equals("SIM_STOP")){
+//            stop();
+//        }
+//    }
+
+
 }

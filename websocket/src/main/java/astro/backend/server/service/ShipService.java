@@ -1,6 +1,7 @@
 package astro.backend.server.service;
 
-import astro.backend.server.action.Action;
+import astro.backend.server.event.action.ActionEvent;
+import astro.backend.server.event.action.ShipAction;
 import astro.backend.server.model.Ship;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.Singleton;
@@ -27,16 +28,14 @@ public class ShipService {
         }
     }
 
-    public Action getAction(){
+    public ActionEvent getAction(){
         int ship = new Double(Math.random() * 2.999).intValue();
 
         Ship proto = ships[ship];
 
         Ship newShip = new Ship(id, proto.getName());
 
-        Action action = new Action();
-        action.setType("SHIP_ADD_NAME");
-        action.setShip(mapper.valueToTree(newShip));
+        ActionEvent action = new ShipAction("SHIP_ADD_NAME", mapper.valueToTree(newShip));
         id++;
         return action;
     }
