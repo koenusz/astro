@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import lombok.Getter;
 
 @Getter
-public class ActionEvent extends Event {
+public class ActionEvent implements Event {
 
     private final String actionType;
 

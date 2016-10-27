@@ -18,23 +18,35 @@ package astro.backend.server.event.frame;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class EventDispatcher implements DynamicRouter<Event> {
-	private Map<Class<? extends Event>, Handler> handlers;
+	private Map<Class<? extends Event>, Handler<? extends Event>> handlers;
 
 	public EventDispatcher() {
 		handlers = new HashMap<>();
 	}
 
 	@Override
-	public void registerChannel(Class<? extends Event> contentType,
-			Channel<? extends Event> channel) {
-		handlers.put(contentType, (Handler) channel);
+	public void registerHandler(Class<? extends Event> contentType, Handler<? extends Event> handler) {
+		handlers.put(contentType, handler);
 	}
 
 	@Override
 	public void dispatch(Event content) {
-		assert content != null;
-		handlers.get(content.getClass()).dispatch(content);
+		Handler handler = handlers.get(Objects.requireNonNull(content).getClass());
+		Objects.requireNonNull(handler).onEvent(content);
 	}
+
+//	@Override
+//	public void registerChannel(Class<? extends Event> contentType,
+//			Channel<? extends Event> channel) {
+//		handlers.put(contentType, (Handler) channel);
+//	}
+//
+//	@Override
+//	public void dispatch(Event content) {
+//		assert content != null;
+//		handlers.get(content.getClass()).dispatch(content);
+//	}
 }

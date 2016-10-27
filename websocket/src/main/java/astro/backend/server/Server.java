@@ -52,8 +52,8 @@ public class Server {
 
         server = new SocketIOServer(config);
         server.addConnectListener((client -> server.getBroadcastOperations().sendEvent("connect", "connecting to the server")));
-        server.addEventListener("SHIP_REQUEST_NEW", ActionEvent.class,
-                (client, data, ackRequest) -> actionLog.dispatch(data));
+//        server.addEventListener("SHIP_REQUEST_NEW", ActionEvent.class,
+//                (client, data, ackRequest) -> actionLog.dispatch(data));
         server.addConnectListener(c -> logger.info("connecting"));
         server.addEventListener("SHIP_REQUEST_NEW", ActionEvent.class,
                 (client, data, ackRequest) -> {
@@ -68,15 +68,15 @@ public class Server {
 
         EventDispatcher dispatcher = new EventDispatcher();
 
-        dispatcher.registerChannel(SimStartAction.class, new Simhandler(sim){
-
-            @Override
-            public void dispatch(Event event ){
-                SimStartAction start = (SimStartAction) event;
-                simulator.start();
-            }
-
-        });
+//        dispatcher.registerChannel(SimStartAction.class, new Simhandler(sim){
+//
+//            @Override
+//            public void dispatch(Event event ){
+//                SimStartAction start = (SimStartAction) event;
+//                simulator.start();
+//            }
+//
+//        });
 
         server.addEventListener("SIM_START", SimStartAction.class,
                 (client, data, ackRequest) -> dispatcher.dispatch(data));
