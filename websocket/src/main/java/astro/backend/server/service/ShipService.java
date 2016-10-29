@@ -1,13 +1,20 @@
 package astro.backend.server.service;
 
+import astro.backend.server.engine.Component;
 import astro.backend.server.event.action.ActionEvent;
 import astro.backend.server.event.action.ShipAction;
-import astro.backend.server.model.Ship;
+import astro.backend.server.model.components.Armor;
+import astro.backend.server.model.components.Hull;
+import astro.backend.server.model.components.Shield;
+import astro.backend.server.model.components.Weapon;
+import astro.backend.server.model.entities.Ship;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.Singleton;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 public class ShipService {
@@ -28,15 +35,22 @@ public class ShipService {
         }
     }
 
-    public ActionEvent getAction(){
-        int ship = new Double(Math.random() * 2.999).intValue();
-
-        Ship proto = ships[ship];
-
-        Ship newShip = new Ship(id, proto.getName());
-
-        ActionEvent action = new ShipAction("SHIP_ADD_NAME", mapper.valueToTree(newShip));
-        id++;
-        return action;
-    }
+//    public ActionEvent getAction(){
+//        int ship = new Double(Math.random() * 2.999).intValue();
+//
+//        Ship proto = ships[ship];
+//
+//        long entityId = 1;
+//
+//        List<Component> components = new ArrayList<>();
+//        components.add(new Shield(entityId, 2));
+//        components.add(new Weapon(entityId, 1));
+//        components.add(new Armor(entityId,2));
+//        components.add(new Hull(entityId, 5));
+//        Ship newShip = new Ship(entityId, components);
+//
+//        ActionEvent action = new ShipAction("SHIP_ADD_NAME", mapper.valueToTree(newShip));
+//        id++;
+//        return action;
+//    }
 }

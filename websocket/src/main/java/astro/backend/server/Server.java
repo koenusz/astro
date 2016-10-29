@@ -1,11 +1,11 @@
 package astro.backend.server;
 
+import astro.backend.server.configuration.EngineModule;
+import astro.backend.server.configuration.OrientDBModule;
 import astro.backend.server.engine.Simulator;
 import astro.backend.server.event.action.ActionEvent;
 import astro.backend.server.event.action.ActionLog;
 import astro.backend.server.event.action.SimStartAction;
-import astro.backend.server.event.action.Simhandler;
-import astro.backend.server.event.frame.Event;
 import astro.backend.server.event.frame.EventDispatcher;
 import astro.backend.server.service.ShipService;
 import com.corundumstudio.socketio.Configuration;
@@ -21,12 +21,13 @@ import java.util.Queue;
 public class Server {
 
     private static final Logger logger = LogManager.getLogger();
-
     static ShipService service;
-
     private Queue<ActionEvent> actionQueue;
-
     final SocketIOServer server;
+
+    private final static String LOCALURL = "plocal:astro";
+    private final static String DOCKERURL = "remote:192.168.99.100:32769/astro";
+
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -37,7 +38,7 @@ public class Server {
         config.setHostname("localhost");
         config.setPort(9092);
 
-        Injector injector = Guice.createInjector();
+        Injector injector = Guice.createInjector(new OrientDBModule(LOCALURL, "admin", "admin"), new EngineModule());
 
         service = injector.getInstance(ShipService.class);
 
@@ -57,9 +58,9 @@ public class Server {
         server.addConnectListener(c -> logger.info("connecting"));
         server.addEventListener("SHIP_REQUEST_NEW", ActionEvent.class,
                 (client, data, ackRequest) -> {
-                    ActionEvent action = service.getAction();
-                    server.getBroadcastOperations().sendEvent("action", action );
-                    logger.info("returning {}", action);
+//                    ActionEvent action = service.getAction();
+//                    server.getBroadcastOperations().sendEvent("action", action );
+//                    logger.info("returning {}", action);
                 }
         );
 

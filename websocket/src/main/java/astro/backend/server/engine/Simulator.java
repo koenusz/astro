@@ -54,13 +54,9 @@ public class Simulator implements Runnable {
             lastTime = now;
             while (delta >= 1)//Make sure update is only happening 2 times a second
             {
-                logger.info("Yippee im spamming! at {} " + delta);
-
                 for (GameObject go : gameObjects) {
                     go.update(delta);
-
                 }
-
                 delta--;
             }
             //render();//displays to the screen unrestricted time

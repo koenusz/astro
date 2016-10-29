@@ -37,16 +37,4 @@ public class EventDispatcher implements DynamicRouter<Event> {
 		Handler handler = handlers.get(Objects.requireNonNull(content).getClass());
 		Objects.requireNonNull(handler).onEvent(content);
 	}
-
-//	@Override
-//	public void registerChannel(Class<? extends Event> contentType,
-//			Channel<? extends Event> channel) {
-//		handlers.put(contentType, (Handler) channel);
-//	}
-//
-//	@Override
-//	public void dispatch(Event content) {
-//		assert content != null;
-//		handlers.get(content.getClass()).dispatch(content);
-//	}
 }
